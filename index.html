@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTFOLIO 2024</title>
+    <link rel="stylesheet" href="fonts/gilroy.css">
+    <style>
+        @font-face {
+            font-family: 'Gilroy';
+            src: url('fonts/gilroy-regular.woff2') format('woff2'),
+                 url('fonts/gilroy-regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            overflow-y: auto;
+            background-color: black;
+            color: white;
+            font-family: 'Gilroy', sans-serif;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .title-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            opacity: 0.7;
+            letter-spacing: 5px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        .video-section {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+        }
+
+        video::-webkit-media-controls {
+            display: none !important;
+        }
+
+        video::-moz-media-controls {
+            display: none !important;
+        }
+
+        video::-ms-media-controls {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title-container">
+        <h1></h1>
+        <h2></h2>
+    </div>
+
+    <section>
+        <!-- First video (stops at the last frame) -->
+        <div class="video-section">
+            <video id="firstVideo" autoplay muted playsinline>
+                <source src="videos/1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- Other videos remain the same -->
+        <div class="video-section">
+            <video autoplay muted loop playsinline>
+                <source src="videos/2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="title-container">
+                <h2>2.mp4</h2>
+            </div>
+        </div>
+
+        <div class="video-section">
+            <video autoplay muted loop playsinline>
+                <source src="videos/3.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="title-container">
+                <h2>3.mp4</h2>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Target the first video
+        const firstVideo = document.getElementById('firstVideo');
+
+        // When the first video ends, pause it and set it to the last frame
+        firstVideo.addEventListener('ended', () => {
+            firstVideo.pause();
+            firstVideo.currentTime = firstVideo.duration; // Go to the last frame
+        });
+
+        // Optional: Prevent user interaction from restarting the video
+        firstVideo.addEventListener('play', (event) => {
+            if (firstVideo.currentTime === firstVideo.duration) {
+                event.preventDefault(); // Prevent it from playing again
+            }
+        });
+    </script>
+
+</body>
+
+</html>
